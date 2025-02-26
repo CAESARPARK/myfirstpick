@@ -9,8 +9,10 @@
         @import url('https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap');
 
         .gamja-flower {
-            font-family: 'Gamja Flower', cursive;}
-/* 날짜 입력란 플레이스홀더 스타일 */
+            font-family: 'Gamja Flower', cursive;
+        }
+
+        /* 날짜 입력란 플레이스홀더 스타일 */
         .date-placeholder::before {
             content: attr(data-placeholder);
             color: #a3a3a3;
@@ -33,16 +35,16 @@
         style="background-image: url('히어로 섹션.png'); background-color: rgba(255, 250, 245, 0.8); background-blend-mode: lighten;">
         
         <p class="absolute top-16 text-4xl md:text-5xl font-bold text-transparent bg-clip-text 
-                  bg-gradient-to-r from-pink-400 via-blue-300 
-                  via-blue-300 to-red-400 gamja-flower">
+                  bg-gradient-to-r from-pink-400 to-red-400 gamja-flower">
             my first Pick
         </p>
-        <h1 class="text-3xl md:text-5xl font-bold text-gray-800 mt-12">내 아이의 첫 번째 선택을</br>특별하게 간직하세요</h1>
+        
+        <h1 class="text-3xl md:text-5xl font-bold text-gray-800 mt-12">내 아이의 첫 번째 선택을 특별하게 간직하세요.</h1>
 
-        <img src="최종본 토끼.png" alt="아기 인형" class="w-32 md:w-48 mt-6">
+        <img src="히어로 섹션.png" alt="아기 인형" class="w-32 md:w-48 mt-6">
 
         <a href="#reserve" onclick="scrollToReserve(event)" class="mt-12 inline-block bg-pink-400 hover:bg-pink-500 text-white px-6 py-3 rounded-lg text-lg transition shadow-lg">
-            예약하기
+            사전 예약하기
         </a>
     </section>
 
@@ -106,7 +108,7 @@
                 <input type="text" id="name" class="w-full px-4 py-3 border border-pink-300 rounded-lg focus:ring-2 focus:ring-pink-400" placeholder="이름">
                 <input type="tel" id="phone" class="w-full px-4 py-3 border border-pink-300 rounded-lg focus:ring-2 focus:ring-pink-400" placeholder="연락처">
                 
-                <!-- 날짜 입력 필드에 플레이스홀더 표시 -->
+                <!-- 날짜 입력 필드 (플레이스홀더 추가) -->
                 <div class="relative">
                     <input type="date" id="partyDate" class="w-full px-4 py-3 border border-pink-300 rounded-lg focus:ring-2 focus:ring-pink-400 date-placeholder" data-placeholder="돌잔치 날짜">
                 </div>
@@ -119,39 +121,6 @@
             </button>
         </div>
     </section>
-
-    <script>
-        function scrollToReserve(event) {
-            event.preventDefault();
-            document.getElementById('reserve').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function reserveProduct() {
-            const name = document.getElementById('name').value.trim();
-            const phone = document.getElementById('phone').value.trim();
-            const partyDate = document.getElementById('partyDate').value;
-            const messageText = document.getElementById('message').value.trim();
-
-            if (name === "" || phone === "" || partyDate === "") {
-                alert("이름, 연락처, 돌잔치 날짜를 입력해주세요!");
-                return;
-            }
-
-            const data = { name, phone, partyDate, message: messageText };
-
-            fetch("https://hook.us2.make.com/9iyvst17f25aug5h0rjd30785esuwq18", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data)
-            })
-            .then(() => {
-                alert("예약이 완료되었습니다!");
-            })
-            .catch(() => {
-                alert("예약에 실패했습니다. 다시 시도해주세요.");
-            });
-        }
-    </script>
 
 </body>
 </html>
