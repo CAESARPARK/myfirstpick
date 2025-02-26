@@ -12,19 +12,30 @@
             font-family: 'Gamja Flower', cursive;
         }
 
-        /* 날짜 입력란 플레이스홀더 스타일 */
-        .date-placeholder::before {
-            content: attr(data-placeholder);
-            color: #a3a3a3;
+       /* 날짜 입력란 플레이스홀더 스타일 */
+       .relative input {
+            color: transparent;
+        }
+
+        .relative input:focus,
+        .relative input:valid {
+            color: black;
+        }
+
+        .date-placeholder {
             position: absolute;
             left: 12px;
             top: 50%;
             transform: translateY(-50%);
+            color: #a3a3a3;
+            pointer-events: none;
+            transition: all 0.2s ease-in-out;
         }
 
-        /* 사용자가 날짜 입력 시 플레이스홀더 숨기기 */
-        input[type="date"]:valid::before {
-            display: none;
+        /* 입력 시 플레이스홀더 숨김 */
+        .relative input:focus + .date-placeholder,
+        .relative input:valid + .date-placeholder {
+            opacity: 0;
         }
     </style>
 </head>
@@ -103,7 +114,7 @@
     </section>
 
     <!-- Reservation Section -->
-    <section id="reserve" class="bg-white py-16">
+     <section id="reserve" class="bg-white py-16">
         <div class="max-w-lg mx-auto px-6 text-center">
             <h2 class="text-3xl font-bold text-gray-800">지금 예약하세요 :)</h2>
 
@@ -111,9 +122,10 @@
                 <input type="text" id="name" class="w-full px-4 py-3 border border-pink-300 rounded-lg focus:ring-2 focus:ring-pink-400" placeholder="이름">
                 <input type="tel" id="phone" class="w-full px-4 py-3 border border-pink-300 rounded-lg focus:ring-2 focus:ring-pink-400" placeholder="연락처">
                 
-                <!-- 날짜 입력 필드 (플레이스홀더 추가) -->
+                <!-- 날짜 입력 필드 (모바일에서도 플레이스홀더 표시) -->
                 <div class="relative">
-                    <input type="date" id="partyDate" class="w-full px-4 py-3 border border-pink-300 rounded-lg focus:ring-2 focus:ring-pink-400 date-placeholder" data-placeholder="돌잔치 날짜">
+                    <input type="date" id="partyDate" class="w-full px-4 py-3 border border-pink-300 rounded-lg focus:ring-2 focus:ring-pink-400" required>
+                    <span class="date-placeholder">돌잔치 날짜</span>
                 </div>
 
                 <textarea id="message" class="w-full px-4 py-3 border border-pink-300 rounded-lg focus:ring-2 focus:ring-pink-400" rows="3" placeholder="문의하기"></textarea>
@@ -124,6 +136,13 @@
             </button>
         </div>
     </section>
+
+    <script>
+        function scrollToReserve(event) {
+            event.preventDefault(); // 기본 앵커 동작 방지
+            document.getElementById("reserve").scrollIntoView({ behavior: "smooth" });
+        }
+    </script>
 
 </body>
 </html>
