@@ -13,15 +13,15 @@
 <body>
 
     <!-- Hero Section -->
-    <section class="relative w-full h-screen bg-cover bg-center flex flex-col items-center justify-center text-gray-800 text-center px-6" 
-        style="background-image: url('히어로 섹션.png'); background-color: rgba(255, 250, 245, 0.8); background-blend-mode: lighten;">
+    <section class="relative w-full h-screen bg-cover bg-center flex flex-col items-center justify-center text-gray-800 text-center px-6"
+        style="background-image: url('/Users/parkbook/Coding/챗 gpt/히어로 섹션.png'); background-color: rgba(255, 250, 245, 0.8); background-blend-mode: lighten;">
         
-        <p class="absolute top-8 text-lg font-semibold text-gray-600">my first Pick</p>
-        <h1 class="text-4xl md:text-6xl font-bold text-gray-800 mt-12">내 아이의 첫 번째 선택을 특별하게 간직하세요.</h1>
+        <p class="absolute top-6 text-lg font-semibold text-gray-600">my first Pick</p>
+        <h1 class="text-3xl md:text-5xl font-bold text-gray-800 mt-12">내 아이의 첫 번째 선택을 특별하게 간직하세요.</h1>
 
-        <img src="https://via.placeholder.com/200" alt="아기 인형" class="w-48 mt-6">
+        <img src="/Users/parkbook/Coding/챗 gpt/히어로 섹션.png" alt="아기 인형" class="w-32 md:w-48 mt-6">
 
-        <a href="#reserve" onclick="scrollToReserve(event)" class="mt-16 inline-block bg-pink-400 hover:bg-pink-500 text-white px-8 py-4 rounded-lg text-lg transition shadow-lg">
+        <a href="#reserve" onclick="scrollToReserve(event)" class="mt-12 inline-block bg-pink-400 hover:bg-pink-500 text-white px-6 py-3 rounded-lg text-lg transition shadow-lg">
             예약하기
         </a>
     </section>
@@ -34,12 +34,45 @@
         </p>
         <p class="mt-4 text-lg text-center text-red-500 font-semibold">평생 한 번 뿐인 생일을 치킨 3마리와 바꾸지 마세요.</p>
 
-        <div class="mt-12 flex flex-col md:flex-row items-center justify-center gap-8">
-            <img src="최종본 토끼.png" alt="돌잡이 인형" class="w-full md:w-1/2 rounded-lg shadow-lg">
+        <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+            <img src="https://via.placeholder.com/400" alt="돌잡이 인형" class="w-full rounded-lg shadow-lg">
             <div>
                 <p class="text-lg text-gray-700">첫 번째 선택의 순간을 인형을 보며 내 아이와 함께 이야기 나누세요.</p>
                 <p class="mt-4 text-lg text-gray-700">정말 특별한 경험이 될 것입니다. 그리고 소중한 추억을 선물할 것입니다.</p>
-                <img src="https://via.placeholder.com/200" alt="아기 인형" class="w-32 mt-6 mx-auto">
+                <img src="https://via.placeholder.com/200" alt="아기 인형" class="w-24 mt-6 mx-auto">
+            </div>
+        </div>
+    </section>
+
+    <!-- 추가 제품 상세 섹션 -->
+    <section class="bg-white py-16">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold text-gray-800">제품 상세 정보</h2>
+            <div class="mt-10 grid grid-cols-2 md:grid-cols-3 gap-6">
+                <div>
+                    <img src="/Users/parkbook/Coding/챗 gpt/최종본 토끼.png" class="w-full rounded-lg shadow-md">
+                    <p class="mt-2 text-lg text-gray-700">디자인 A</p>
+                </div>
+                <div>
+                    <img src="/Users/parkbook/Coding/챗 gpt/최종본 토끼.png" class="w-full rounded-lg shadow-md">
+                    <p class="mt-2 text-lg text-gray-700">디자인 B</p>
+                </div>
+                <div>
+                    <img src="/Users/parkbook/Coding/챗 gpt/2.webp" class="w-full rounded-lg shadow-md">
+                    <p class="mt-2 text-lg text-gray-700">디자인 C</p>
+                </div>
+                <div>
+                    <img src="/Users/parkbook/Coding/챗 gpt/2.webp" class="w-full rounded-lg shadow-md">
+                    <p class="mt-2 text-lg text-gray-700">디자인 D</p>
+                </div>
+                <div>
+                    <img src="/Users/parkbook/Coding/챗 gpt/1.webp" class="w-full rounded-lg shadow-md">
+                    <p class="mt-2 text-lg text-gray-700">디자인 E</p>
+                </div>
+                <div>
+                    <img src="/Users/parkbook/Coding/챗 gpt/1.webp" class="w-full rounded-lg shadow-md">
+                    <p class="mt-2 text-lg text-gray-700">디자인 F</p>
+                </div>
             </div>
         </div>
     </section>
@@ -48,30 +81,16 @@
     <section id="reserve" class="bg-white py-16">
         <div class="max-w-lg mx-auto px-6 text-center">
             <h2 class="text-3xl font-bold text-gray-800">지금 예약하세요 :)</h2>
-            <p class="mt-4 text-lg text-gray-600">my first Pick.</p>
 
-            <div class="mt-6">
-                <label for="name" class="block text-lg font-medium text-gray-700">이름</label>
-                <input type="text" id="name" class="mt-2 w-full px-4 py-2 border border-pink-300 rounded-lg focus:ring-2 focus:ring-pink-400" placeholder="홍길동">
-            </div>
-
-            <div class="mt-4">
-                <label for="phone" class="block text-lg font-medium text-gray-700">연락처</label>
-                <input type="tel" id="phone" class="mt-2 w-full px-4 py-2 border border-pink-300 rounded-lg focus:ring-2 focus:ring-pink-400" placeholder="010-1234-5678">
-            </div>
-
-            <div class="mt-4">
-                <label for="partyDate" class="block text-lg font-medium text-gray-700">돌잔치 날짜</label>
-                <input type="date" id="partyDate" class="mt-2 w-full px-4 py-2 border border-pink-300 rounded-lg focus:ring-2 focus:ring-pink-400">
-            </div>
-
-            <div class="mt-4">
-                <label for="message" class="block text-lg font-medium text-gray-700">문의사항</label>
-                <textarea id="message" class="mt-2 w-full px-4 py-2 border border-pink-300 rounded-lg focus:ring-2 focus:ring-pink-400" rows="3" placeholder="추가 요청 사항을 입력하세요."></textarea>
+            <div class="mt-6 space-y-4">
+                <input type="text" id="name" class="w-full px-4 py-3 border border-pink-300 rounded-lg focus:ring-2 focus:ring-pink-400" placeholder="이름">
+                <input type="tel" id="phone" class="w-full px-4 py-3 border border-pink-300 rounded-lg focus:ring-2 focus:ring-pink-400" placeholder="연락처">
+                <input type="date" id="partyDate" class="w-full px-4 py-3 border border-pink-300 rounded-lg focus:ring-2 focus:ring-pink-400">
+                <textarea id="message" class="w-full px-4 py-3 border border-pink-300 rounded-lg focus:ring-2 focus:ring-pink-400" rows="3" placeholder="문의하기"></textarea>
             </div>
 
             <button onclick="reserveProduct()" class="mt-6 w-full bg-pink-400 hover:bg-pink-500 text-white px-6 py-3 rounded-lg text-lg transition shadow-lg">
-                사전 예약하기
+                예약 완료
             </button>
         </div>
     </section>
@@ -101,39 +120,11 @@
                 body: JSON.stringify(data)
             })
             .then(() => {
-                openConfirmationPage(name, partyDate);
+                alert("예약이 완료되었습니다!");
             })
             .catch(() => {
                 alert("예약에 실패했습니다. 다시 시도해주세요.");
             });
-        }
-
-        function openConfirmationPage(name, partyDate) {
-            const confirmationPage = `
-                <html lang="ko">
-                <head>
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>예약 완료</title>
-                    <style>
-                        body { font-family: 'Pretendard', sans-serif; background-color: #FFF9F4; text-align: center; padding: 50px; }
-                        .container { max-width: 500px; margin: auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); }
-                        h1 { color: #E91E63; }
-                        p { font-size: 18px; color: #555; }
-                    </style>
-                </head>
-                <body>
-                    <div class="container">
-                        <h1>🎉 예약이 완료되었습니다!</h1>
-                        <p><strong>${name}</strong>님, 예약해 주셔서 감사합니다.</p>
-                        <p>📅 돌잔치 날짜: <strong>${partyDate}</strong></p>
-                        <p>빠른 시일 내에 연락드리겠습니다.</p>
-                        <p>my first Pick.</p>
-                    </div>
-                </body>
-                </html>
-            `;
-            window.open("", "_blank").document.write(confirmationPage);
         }
     </script>
 
