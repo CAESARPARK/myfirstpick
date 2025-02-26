@@ -12,8 +12,8 @@
             font-family: 'Gamja Flower', cursive;
         }
 
-       /* 날짜 입력란 플레이스홀더 스타일 */
-       .relative input {
+        /* 날짜 입력란 플레이스홀더 스타일 */
+        .relative input {
             color: transparent;
         }
 
@@ -116,7 +116,7 @@
     <!-- Reservation Section -->
      <section id="reserve" class="bg-white py-16">
         <div class="max-w-lg mx-auto px-6 text-center">
-            <h2 class="text-3xl font-bold text-gray-800">지금 예약하세요 :)</h2>
+            <h2 class="text-3xl font-bold text-gray-800"> [ Reservation Now ]  </h2>
 
             <div class="mt-6 space-y-4">
                 <input type="text" id="name" class="w-full px-4 py-3 border border-pink-300 rounded-lg focus:ring-2 focus:ring-pink-400" placeholder="이름">
@@ -131,16 +131,106 @@
                 <textarea id="message" class="w-full px-4 py-3 border border-pink-300 rounded-lg focus:ring-2 focus:ring-pink-400" rows="3" placeholder="문의하기"></textarea>
             </div>
 
-            <button class="mt-6 w-full bg-pink-400 hover:bg-pink-500 text-white px-6 py-3 rounded-lg text-lg transition shadow-lg">
-                사전 예약하기
+            <button onclick="confirmReservation()" class="mt-6 w-full bg-pink-400 hover:bg-pink-500 text-white px-6 py-3 rounded-lg text-lg transition shadow-lg">
+                🗓️ 사전 예약하기
             </button>
         </div>
     </section>
 
     <script>
         function scrollToReserve(event) {
-            event.preventDefault(); // 기본 앵커 동작 방지
+            event.preventDefault();
             document.getElementById("reserve").scrollIntoView({ behavior: "smooth" });
+        }
+    
+        function confirmReservation() {
+            const name = document.getElementById("name").value.trim();
+            const phone = document.getElementById("phone").value.trim();
+            const partyDate = document.getElementById("partyDate").value;
+            const message = document.getElementById("message").value.trim();
+    
+            if (name === "" || phone === "" || partyDate === "") {
+                alert("이름, 연락처, 돌잔치 날짜를 입력해주세요.");
+                return;
+            }
+    
+            // 예약 데이터 생성
+            const reservationData = {
+                name: name,
+                phone: phone,
+                partyDate: partyDate,
+                message: message
+            };
+    
+            // Webhook으로 데이터 전송
+            fetch("https://hook.us2.make.com/9iyvst17f25aug5h0rjd30785esuwq18", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(reservationData)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`서버 응답 오류: ${response.status} ${response.statusText}`);
+                }
+                return response.text(); // JSON이 아닐 수도 있으므로 .text()로 처리
+            })
+            .then(responseText => {
+                console.log("서버 응답:", responseText); // 응답 확인용 로그
+                openConfirmationPage(name, partyDate);
+            })
+            .catch(error => {
+                console.error("예약 전송 실패:", error);
+                alert("예약 전송에 실패했습니다. 다시 시도해주세요.\n오류 메시지: " + error.message);
+            });
+        }
+    
+        function openConfirmationPage(name, partyDate) {
+            const newWindow = window.open("", "_blank");
+    
+            if (newWindow) {
+                newWindow.document.write(`
+                    <!DOCTYPE html>
+                    <html lang="ko">
+                    <head>
+                        <meta charset="UTF-8">
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                        <title>예약 완료</title>
+                        <style>
+                            body {
+                                font-family: 'Pretendard', sans-serif;
+                                background-color: #FFF9F4;
+                                text-align: center;
+                                padding: 50px;
+                            }
+                            .container {
+                                max-width: 500px;
+                                margin: auto;
+                                background: white;
+                                padding: 30px;
+                                border-radius: 10px;
+                                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                            }
+                            h1 { color: #E91E63; }
+                            p { font-size: 18px; color: #555; }
+                        </style>
+                    </head>
+                    <body>
+                        <div class="container">
+                            <h1>🎉 예약이 완료되었습니다!</h1>
+                            <p><strong>${name}</strong>님, 예약해 주셔서 감사합니다.</p>
+                            <p>📅 돌잔치 날짜: <strong>${partyDate}</strong></p>
+                            <p>빠른 시일 내에 연락드리겠습니다.</p>
+                            <p>my first Pick.</p>
+                        </div>
+                    </body>
+                    </html>
+                `);
+                newWindow.document.close();
+            } else {
+                alert("팝업 차단이 활성화되어 있습니다. 새 창을 허용해주세요.");
+            }
         }
     </script>
 
