@@ -66,6 +66,42 @@
     color: #e91e63;
 }
 
+        * 🏆 [새로운 스타일] 고정된 예약 버튼 */
+.fixed-reserve-btn {
+    position: fixed;
+    bottom: 20px;  /* 아래에서 20px 띄움 */
+    right: 20px;  /* 오른쪽에서 20px 띄움 */
+    background-color: #e12a67;
+    color: white;
+    padding: 14px 20px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+    z-index: 1000; /* 다른 요소 위에 표시 */
+}
+
+/* 🏆 호버 시 색상 변경 */
+.fixed-reserve-btn:hover {
+    background-color: #e389aa;
+}
+
+/* 🏆 모바일에서는 크기 조정 */
+@media (max-width: 768px) {
+    .fixed-reserve-btn {
+        padding: 12px 18px;
+        font-size: 14px;
+        bottom: 15px;
+        right: 15px;
+    }
+}
+
+/* 🏆 예약 섹션 도달 시 버튼 숨김 */
+.hidden-btn {
+    opacity: 0;
+    visibility: hidden;
+
     </style>
 </head>
 <body class="bg-gray-100">
@@ -84,10 +120,14 @@
             <p class="mt-2 md:mt-10">간직하세요.</p>
         </div>
 
-
-        <a href="#reserve" onclick="scrollToReserve(event)" class="mt-12 inline-block bg-pink-400 hover:bg-pink-500 text-white px-6 py-3 rounded-lg text-lg transition font-bold shadow-lg">
+ <!-- 기존 버튼  <a href="#reserve" onclick="scrollToReserve(event)" class="mt-12 inline-block bg-pink-400 hover:bg-pink-500 text-white px-6 py-3 rounded-lg text-lg transition font-bold shadow-lg">
             사전 예약하기
-        </a>
+        </a> -->
+        
+       <!-- 🏆 오른쪽 아래 따라오는 예약 버튼 -->
+<a href="#reserve" onclick="scrollToReserve(event)" id="floatingReserveBtn" class="fixed-reserve-btn">
+    예약하기 📅
+</a>
     </section>
 
     <!-- Product Details -->
@@ -216,6 +256,20 @@
         event.preventDefault();
         document.getElementById("reserve").scrollIntoView({ behavior: "smooth" });
     }
+
+    // 🏆 스크롤 이벤트로 버튼 숨기기
+window.addEventListener("scroll", function () {
+    const reserveSection = document.getElementById("reserve");
+    const reserveBtn = document.getElementById("floatingReserveBtn");
+    const rect = reserveSection.getBoundingClientRect();
+
+    // 예약 섹션이 화면에 보이면 버튼 숨김
+    if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+        reserveBtn.classList.add("hidden-btn");
+    } else {
+        reserveBtn.classList.remove("hidden-btn");
+    }
+});
 
     // 구성 선택하기
     document.addEventListener("DOMContentLoaded", function () {
